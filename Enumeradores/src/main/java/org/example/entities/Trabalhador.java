@@ -67,7 +67,7 @@ public class Trabalhador {
         contratos.remove(contrato);
     }
 
-    public double renda(int ano, int mes) {
+    public double renda(int ano, int mes, boolean isCalculaMesesRestantes) {
         double soma = salarioBase;
         Calendar cal = Calendar.getInstance();              //Obtendo a instância de calendário
         for (ContratoHora contrato : contratos) {           //Percorrer toda a lista de contratos
@@ -76,9 +76,16 @@ public class Trabalhador {
             int anoContrato = cal.get(Calendar.YEAR);       //Obtendo o ano do contrato e atribuindo a variável
             int mesContrato = 1 + cal.get(Calendar.MONTH);  //Obtendo o mês do contrato e atribuindo a variável (somando com mais 1 pois os meses do calendar vão de 0 a 11)
 
-            if (ano == anoContrato && mes == mesContrato) { //Se o contrato for do ano e mês informados
-                soma += contrato.valorTotal();              //Obter o valor total do contrato e atribuir a variável
+            if (!isCalculaMesesRestantes) {
+                if (ano == anoContrato && mes == mesContrato) { //Se o contrato for do ano e mês informados
+                    soma += contrato.valorTotal();              //Obter o valor total do contrato e atribuir a variável
+                }
+            } else {
+                if (ano != anoContrato || mes != mesContrato) { //Se o contrato for diferente do ano e mês informados
+                    soma += contrato.valorTotal();              //Obter o valor total do contrato e atribuir a variável
+                }
             }
+
         }
         return soma;
     }

@@ -51,7 +51,6 @@ public class Main {
             trabalhador.addContract(contrato);                                           //Associando o contrato ao trabalhador
         }
 
-        System.out.println();
         System.out.println("Informe o mês e ano para cálculo do salário (MM/YYYY): ");
         String mesAno = sc.next();
         int mes = Integer.parseInt(mesAno.substring(0, 2));
@@ -59,6 +58,8 @@ public class Main {
 
         System.out.println("Nome do trabalhador: " + trabalhador.getNome());
         System.out.println("Departamento do trabalhador: " + trabalhador.getDepartamento().getNome());
-        System.out.println("Renda no mês " + mesAno + ": " + String.format("%.2f", trabalhador.renda(ano, mes)));
+        System.out.println("Renda no mês " + mesAno + ": " + String.format("%.2f", trabalhador.renda(ano, mes, false)));
+
+        System.out.println("Renda dos meses restantes: "+ String.format("%.2f", trabalhador.renda(ano, mes, true)));
     }
 }
