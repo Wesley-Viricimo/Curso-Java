@@ -21,4 +21,10 @@ public class ContaComercial extends Conta {
             saldo += valor - 10.0;
         }
     }
+
+    @Override //Anotação indica que estou sobrecresvendo o método saque da superclasse
+    public void saque(double valor) {
+        super.saque(valor); //Chamo o método saque da superclasse
+        saldo -= 2.0;       //Acrescento uma caracteristica específica de contas comerciais
+    }
 }

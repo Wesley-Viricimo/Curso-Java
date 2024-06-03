@@ -7,9 +7,9 @@ import org.example.entities.ContaPoupanca;
 public class Main {
     public static void main(String[] args) {
 
-        Conta conta = new Conta(1001, "Wesley", 0);
+        Conta conta = new Conta(1001, "Wesley", 1000);
         ContaComercial contaComercial = new ContaComercial(1002, "Jessica", 0 , 500);
-        Conta contaPoupanca = new ContaPoupanca(1003, "Maria", 0, 500);
+        Conta contaPoupanca = new ContaPoupanca(1003, "Maria", 1000, 500);
 
         //UPCASTING
         Conta conta1 = contaComercial; //É possível atribuir uma variável de um objeto de uma subclasse para uma variável de um da superclasse
@@ -28,8 +28,10 @@ public class Main {
 
         if (contaPoupanca instanceof ContaPoupanca) {
             ContaPoupanca contaPoupanca1 = (ContaPoupanca) contaPoupanca;
-            contaPoupanca1.atualizarSaldo();
             System.out.println("Atualiza saldo!");
         }
+
+        contaPoupanca.saque(200.0);
+        System.out.println(contaPoupanca.getSaldo());
     }
 }

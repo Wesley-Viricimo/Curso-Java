@@ -23,4 +23,9 @@ public class ContaPoupanca extends Conta {
     public void atualizarSaldo() {
         saldo += saldo * taxaJuros;
     }
+
+    @Override //Anotação indica que estou sobrecresvendo o método saque da superclasse
+    public void saque(double valor) {
+        saldo -= valor;
+    }
 }
