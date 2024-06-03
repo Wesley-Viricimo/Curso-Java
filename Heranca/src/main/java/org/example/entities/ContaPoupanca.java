@@ -1,6 +1,6 @@
 package org.example.entities;
 
-public class ContaPoupanca extends Conta {
+public final class ContaPoupanca extends Conta {  //Classes com final não poderão ser herdadas
     private double taxaJuros;
 
     public ContaPoupanca() {
