@@ -39,6 +39,7 @@ public class Main {
             } else {
                 System.out.print("Raio: ");
                 double raio = sc.nextDouble();
+                
 
                 formas.add(new Circulo(cor, raio));
             }
