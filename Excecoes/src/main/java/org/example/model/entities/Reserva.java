@@ -37,7 +37,7 @@ public class Reserva {
         return TimeUnit.DAYS.convert(diferenca, TimeUnit.MILLISECONDS); //CONVERTE A DIFERENÇA ENTRE A DATA DE ENTRADA E DATA DE SAIDA EM DIAS
     }
 
-    public void updateDates(Date dataEntrada, Date dataSaida) {
+    public void atualizarDatas(Date dataEntrada, Date dataSaida) {
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
     }
