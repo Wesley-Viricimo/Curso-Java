@@ -1,6 +1,6 @@
 package org.example.model.services;
 
-public class ImpostoBrasilService {
+public class ImpostoBrasilService implements ImpostoService{
 
     public double imposto(double valor) {
         if (valor <= 100) {
