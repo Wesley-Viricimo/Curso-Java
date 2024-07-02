@@ -3,6 +3,7 @@ package org.example;
 import org.example.entities.Contrato;
 import org.example.entities.Parcela;
 import org.example.services.ContratoService;
+import org.example.services.PaypalService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,7 +32,7 @@ public class Main {
         System.out.print("Informe a quantidade de parcelas: ");
         int qtde = sc.nextInt();
 
-        ContratoService contratoService = new ContratoService(null);
+        ContratoService contratoService = new ContratoService(new PaypalService());
 
         contratoService.processarContrato(contrato, qtde);
 
