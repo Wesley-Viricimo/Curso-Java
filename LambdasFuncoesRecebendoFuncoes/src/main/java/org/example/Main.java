@@ -3,6 +3,8 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
+
 import org.example.entities.Product;
 import org.example.services.ProductService;
 
@@ -18,7 +20,9 @@ public class Main {
 
         ProductService ps = new ProductService();
 
-        double sum = ps.filteredSum(list);
+        Predicate<Product> criteria = product -> product.getName().charAt(0) == 'T'; //CRIANDO UM PREDICADO QUE IDENTIFICARÁ SE A DESCRIÇÃO DO PRODUTO COMEÇA COM T
+
+        double sum = ps.filteredSum(list, criteria); //PASSANDO A LISTA DE PRODUTOS E O PREDICADO COMO ARGUMENTO
 
         System.out.println("Sum = " + String.format("%.2f", sum));
     }
