@@ -1,5 +1,6 @@
 package com.cursonelioalves.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -26,6 +27,9 @@ public class Product implements Serializable {
     joinColumns = @JoinColumn(name = "product_id"),         //Join column referencia a chave estrangeira da tabela
     inverseJoinColumns = @JoinColumn(name = "category_id")) //Inverse Join Column referencia a chave estrangeira da outra tabela que está sendo relacionada
     private Set<Category> categories = new HashSet<>();     //Utilizando set ao invés de lista para garantir que o produto não seja adicionado em uma mesma categoria mais de uma vez
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Product() {
     }
@@ -80,6 +84,16 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+
+        for (OrderItem x : items) {
+            set.add(x.getOrder());
+        }
+        return set;
     }
 
     @Override
