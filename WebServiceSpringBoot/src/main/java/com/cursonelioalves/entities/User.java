@@ -1,5 +1,6 @@
 package com.cursonelioalves.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")                 //Um usuário para muitos pedidos
     private List<Order> orders = new ArrayList<>(); //Um usuário poderá ter vários pedidos
 
