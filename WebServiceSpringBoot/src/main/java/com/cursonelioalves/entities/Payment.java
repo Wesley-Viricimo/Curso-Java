@@ -1,5 +1,6 @@
 package com.cursonelioalves.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Payment implements Serializable {
     private Long id;
     private Instant moment;
 
+    @JsonIgnore
     @OneToOne               //Relação 1 para 1, um pedido possui um pagamento
     @MapsId                 //Indica que deverá ser mapeado o ID da entidade na qual estou relacionando, neste caso será salvo na tabela payment o ID do pedido correspondente
     private Order order;
