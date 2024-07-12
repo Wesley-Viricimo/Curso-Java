@@ -30,4 +30,16 @@ public class UserService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public User update(Long id, User obj) {
+        User entity = repository.getReferenceById(id); //getReferenceById não realiza uma busca no banco de dados, apenas traz uma referência do objeto em memória, por este motivo se torna mais eficiente
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+    }
 }
