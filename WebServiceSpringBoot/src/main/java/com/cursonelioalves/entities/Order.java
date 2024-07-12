@@ -29,8 +29,12 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id") //Nomeando a chave estrangeira
     private User client;
 
-    @OneToMany(mappedBy = "id.order")                      //Um pedido poderá ter muitos itens
+    @OneToMany(mappedBy = "id.order")                      //Um pedido poderá ter muitos itens, mapped by id.order se deve ao fato que a entidade OrderItem possui uma PK, que relaciona o pedido com o produto, então o mapeamento que está sendo referenciado é o id da entidade OrderItem e o order da pk OrderItemPK
     private Set<OrderItem> items = new HashSet<>();
+
+    @OneToOne(mappedBy = "order",                           //Mapped by indica o nome da propriedade que está sendo realizado o mapeamento, neste caso é na propriedade order na entidade Payment
+              cascade = CascadeType.ALL)
+    private Payment payment;
 
     public Order() {
     }
@@ -72,12 +76,20 @@ public class Order implements Serializable {
         return client;
     }
 
+    public void setClient(User client) {
+        this.client = client;
+    }
+
     public Set<OrderItem> getItems() {
         return items;
     }
 
-    public void setClient(User client) {
-        this.client = client;
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     @Override
