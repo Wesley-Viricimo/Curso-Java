@@ -2,6 +2,7 @@ package com.cursonelioalves.services;
 
 import com.cursonelioalves.entities.User;
 import com.cursonelioalves.repositories.UserRepository;
+import com.cursonelioalves.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj) {
